@@ -32,8 +32,40 @@ The tools we'll use:
 - `get_setlist(slug)` and `get_setlists([slugs])` return the sets (`S1`, `S2`, `E1`…). Each track has `position`, `song`, `segue` (`>` or null), and `notes` (free text).
 - `get_venues`, `get_songs`, and `get_song_statistics` are useful for checking our numbers.
 
-**Known unknown:** the song flags (inverted, dyslexic, unfinished, ending only, teases, sit-ins) seem to arrive as free text in `notes`, not as separate fields. Step 3 below inspects real examples before we design the parser.
-Also check whether `segue` marks the transition *into* a track or *out of* it. The sample data suggests "into".
+### Step 3 findings (explored 2026-11-13 with the real key; raw samples are in `data/samples/`)
+
+The connection uses `scripts/mcp_client.py`. It runs `initialize`, then `tools/call`, with a Bearer header and waits 1.1 s between calls. The result is JSON text inside `content[0].text`.
+
+**Use `get_setlists` (batch), not `get_setlist`.** The batch version returns much richer data. Batches of 25 slugs work.
+- Show: `showSlug`, `showDate`, `venue{name,city,state}`, `lineup[]` (musicians with instruments, which can identify eras and guests), `sets[]`.
+- Set: `label` is `S1`, `S2`, `S3`, `E1`, …
+- Track: `id` (UUID), `position`, `songTitle`, `songSlug`, `segue`, `flags[]`, `completes[]`, `annotations[]`, `trackMusicians[]`, `note`, `duration` (seconds), `allTimer`.
+- **`segue`:** `">"` means this track segues **into the next track**. `""` and `null` both mean no segue. A `">"` on the last song of a set is rare, about 3 per 400 sets.
+- **`flags`** are structured: `INVERTED`, `UNFINISHED`, `DYSLEXIC`, `MIDDLE_ONLY`, `ENDING_ONLY`. We haven't seen `BEGINNING_ONLY` yet, but the code should accept any flag value.
+- **`completes`** is structured: `[{showSlug, set, position}]` points to the earlier performance this one finishes. It is often from the previous night, so completions cross shows within a run. This is the source for the `completions` table. An "open thread" is a flagged performance that no later track completes.
+- **`trackMusicians`** lists sit-ins, for example `{musicianSlug, musicianName, instruments[]}`.
+- **Teases and samples** are free text in `annotations`, like `with ‘Song’ (Artist) tease(s)`, `... samples`, or `... jam`. These need a parser. The quote marks are curly (`‘ ’`).
+- **Tractorbeam** is marked per *track* by an annotation such as "Tractorbeam Remix" or "Tractorbeam version", not per set. Tag it at the track level. A set where every track is Tractorbeam counts as a Tractorbeam set.
+- **Powered Down is NOT marked anywhere in the API.** The search for "powered down" only fuzzy-matched words like "Tower" and "Downtime". The user chose a hand-kept list with help from a scan (see section 11).
+
+**Powered Down candidate scan (runs during the backfill):** write `data/powered_down_candidates.txt` as **plain text** for the user to check. Never add anything to the config list without the user's confirmation. Flag a show or set if any of these is true:
+1. The show `notes`, a track `note`, or an `annotation` mentions "acoustic", "powered down", "unplugged", "stripped", or "seated".
+2. The band name or billing differs from "The Disco Biscuits" in any field the API returns, for example a notes line like "billed as …".
+3. The `lineup` differs from that era's usual core four: a member is missing, an extra non-guest musician is listed, or instruments differ (for example acoustic guitar or piano instead of keyboards).
+
+Each line gives the date, the set (or "whole show"), and the reason it was flagged. Confirmed entries go in `config.toml` as `powered_down = ["YYYY-MM-DD S1", "YYYY-MM-DD"]`, where a date alone means the whole show.
+
+`get_shows(slugs)` adds show-level fields: `id`, `notes` (for example the opener band or "Setlist incomplete"), `countForStats` (bool; respect it in the stats math), `dayOrder` (for two shows on one day), `relistenUrl`, and ratings.
+
+`get_shows_by_year(year, limit=500)` lists the shows in a year. 2025 had 91 shows.
+
+**Data quirks to handle:**
+- Some year lists include **placeholder shows** with an empty venue and a bare slug like `2025-10-31`. Skip them, because `get_setlists` returns "Not found" for them.
+- A slug's date can differ from the real date (`2025-07-06-cape-cod-...` has date `2025-07-09`). **Always use the `date` field, never the slug.**
+- `search_by_date` with `dateType: "month"` returns wrong results. Don't use it.
+
+**Upcoming shows are not in the API.** Instead, `scripts/next_show.py` reads the "Next Show" box on the discobiscuits.net homepage. That's one plain request with our generic User-Agent, and `robots.txt` allows `/` for normal agents. The script parses the `<h3>Next Show</h3>` box: the date comes first (`Dec 14, 2026`), then `Venue • City, ST`. If reading it fails, it falls back to `data/upcoming.txt` (`YYYY-MM-DD | Venue | City, ST`) and returns a `notice` for the site to show. Tested on 2026-11-13: it returned 2026-12-14, The Ardmore Music Hall, Ardmore, PA. The fallback was also tested.
+The homepage only shows **one** next show, so run length isn't known ahead of time. Work out night-of-run from the shows already played at that venue in the current run.
 
 ---
 
@@ -275,6 +307,7 @@ Each step ends with something the user can see working.
 - **How much old history counts?** Option C: all history, with recent shows weighted more. The half-life is adjustable and starts at 1 year. There's also an era marker: the Marlon Lewis era starts 2025-10-31, and stats pages can be viewed for the current era only.
 - **What is a "tour"?** Option B: use tour names from the API if it has them. Otherwise, start a new tour after a gap of more than `tour_gap_days` with no show. The default is 21, set in `config.toml`.
 - **Special sets:** tag Tractorbeam sets and Powered Down (acoustic) sets separately, so they can be included in or excluded from rotation and gap math. Both are switches in `config.toml`.
-- **How does the site know the next show?** Option A only: find upcoming shows automatically from discobiscuits.net. No `upcoming.txt` fallback. If step 3 shows the API has no future dates, stop and ask the user before building any other approach.
+- **Powered Down tagging:** option A. Keep a hand-kept list in `config.toml`, seeded by a backfill scan of notes, annotations, band name or billing differences, and lineup differences. Give the user the candidates as a plain-text list to confirm.
+- **How does the site know the next show?** The API has no future dates, so the user chose to read the homepage's "Next Show" box. If that fails, fall back to `data/upcoming.txt` and show a notice on the site. This replaces the earlier "no fallback" answer.
 - **How to enter predictions?** Option A for now: a text file in `data/predictions/`. Later, add Option C: a form on the site that opens a ready-to-commit file on github.com. Predictions usually come from a separate Claude chat, so the format below must be exact and easy to paste.
 - **Public repo?** Yes. The GitHub repository will be public, which is needed for free GitHub Pages. The API key stays private in `.env` and GitHub Secrets.

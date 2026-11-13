@@ -2,6 +2,9 @@
 .env
 .env.*
 
+# Raw API exploration samples (local only)
+data/samples/
+
 # Python
 .venv/
 venv/

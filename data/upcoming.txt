@@ -1,0 +1,4 @@
+# Backup list of upcoming shows. Only used if the discobiscuits.net homepage can't be read.
+# One show per line:  YYYY-MM-DD | Venue | City, ST
+# Example:
+# 2026-12-14 | The Ardmore Music Hall | Ardmore, PA
