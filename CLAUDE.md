@@ -287,6 +287,13 @@ Each step ends with something the user can see working.
 
 ---
 
+### Progress
+- [x] Step 1: API key in `.env` (2026-11-13). The user pasted the key in chat, so recommend rotating it before Step 10.
+- [x] Step 2: `.venv` set up, repo at https://github.com/cullen-dean/biscuits-oracle (public)
+- [x] Step 3: data explored (findings in section 1). `next_show.py` works.
+- [x] Step 4: `scripts/schema.sql` (17 tables), `scripts/db.py`, `config.toml`. Run `python scripts/db.py` to create or check the DB. It's safe to re-run.
+- [ ] Step 5: backfill
+
 ## 10. Safety rules
 
 - `.env` must be in `.gitignore` **before** the first commit.

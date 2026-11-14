@@ -1,0 +1,40 @@
+# Biscuits Oracle settings. Change a number, commit, and the next update uses it.
+
+site_title = "Biscuits Oracle"
+
+# ---- Tours & runs ----
+tour_gap_days = 21            # a new tour starts after more than this many days with no show
+
+# ---- Special sets (include them in gap / rotation math?) ----
+include_tractorbeam = false
+include_powered_down = false
+# Confirmed Powered Down sets. "YYYY-MM-DD S1" = one set, "YYYY-MM-DD" = whole show.
+# Filled in from data/powered_down_candidates.txt after you confirm each one.
+powered_down = []
+
+# ---- Prediction math ----
+recency_half_life_days = 365  # a show this many days old counts half as much as last night's
+bustout_min_gap = 100         # shows; minimum gap for the Bustout Candidates list
+run_repeat_penalty = 0.05     # multiplier for a song already played earlier in the run
+
+# ---- Prediction scoring ----
+max_counted_songs = 15        # only the first N songs in a prediction file are scored
+score_bustout_gap = 50        # gap (shows) that earns the bustout bonus when scoring
+pts_song = 1
+pts_right_set = 1
+pts_s1_opener = 3
+pts_s2_opener = 3
+pts_encore = 2
+pts_segue = 2
+pts_flag = 2
+pts_bustout = 3
+pts_completion = 3
+
+# ---- Updates ----
+recheck_days = 3              # every run re-fetches shows from the last N days
+final_after_hours = 12        # a setlist unchanged this long is "final" for scoring
+
+# ---- Eras (newest last). "Current era" on the site = the last one. ----
+[[eras]]
+name = "Marlon Lewis era"
+start = "2025-10-31"          # Marlon Lewis became the drummer
