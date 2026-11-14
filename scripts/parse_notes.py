@@ -227,9 +227,9 @@ def run(conn, cfg, verbose=True):
         for s in sets:
             if s["label"] in tag_sets:
                 conn.execute("UPDATE sets SET set_type = 'tractorbeam' WHERE id = ?", (s["id"],))
-                conn.execute("UPDATE performances SET is_tractorbeam = 1 WHERE set_id = ?", (s["id"],))
+                conn.execute("UPDATE performances SET is_tractorbeam = 2 WHERE set_id = ?", (s["id"],))
         for label, pos in tag_tracks:
-            conn.execute("""UPDATE performances SET is_tractorbeam = 1 WHERE show_id = ? AND position = ?
+            conn.execute("""UPDATE performances SET is_tractorbeam = 2 WHERE show_id = ? AND position = ?
                             AND set_id = (SELECT id FROM sets WHERE show_id = ? AND label = ?)""",
                          (show["id"], pos, show["id"], label))
         if unclear:

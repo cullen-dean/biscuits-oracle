@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS performances (
     position         INTEGER NOT NULL,
     song_id          INTEGER NOT NULL REFERENCES songs(id),
     segue_out        INTEGER NOT NULL DEFAULT 0,  -- 1 = ">" into the next track
-    is_tractorbeam   INTEGER NOT NULL DEFAULT 0,
+    is_tractorbeam   INTEGER NOT NULL DEFAULT 0,  -- 0 no; 1 a single "Tractorbeam version" (counts in stats);
+                                                  -- 2 part of a Tractorbeam portion from the show notes (excluded like a Tractorbeam set)
     note             TEXT,
     annotations_json TEXT,                    -- raw annotations, kept for re-parsing
     duration_sec     INTEGER,
