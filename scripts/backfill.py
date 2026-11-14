@@ -21,6 +21,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import parse_notes  # noqa: E402
 from db import ROOT, connect, init_db, load_config  # noqa: E402
 
 CACHE = ROOT / "data" / "cache"
@@ -216,6 +217,9 @@ def load_show(conn, listing, setlist, details, problems, stats):
                             {"name": m.get("musicianName") or m["musicianSlug"]})
         conn.execute("INSERT OR REPLACE INTO show_lineup VALUES (?, ?, ?)",
                      (show_id, mid, instruments_text(m)))
+        if m.get("knownFrom"):  # a guest listed for the whole show
+            conn.execute("INSERT INTO sit_ins (show_id, perf_id, musician_id, instruments) VALUES (?, NULL, ?, ?)",
+                         (show_id, mid, instruments_text(m)))
 
     prev_perf = None  # (perf_id, segue_out) of the previous track, across sets
     for n, st in enumerate(setlist.get("sets") or []):
@@ -264,25 +268,6 @@ def load_show(conn, listing, setlist, details, problems, stats):
                 conn.execute("INSERT INTO sit_ins (show_id, perf_id, musician_id, instruments) VALUES (?, ?, ?, ?)",
                              (show_id, perf_id, mid, instruments_text(g)))
     return show_id
-
-
-def apply_hand_tags(conn, cfg, problems):
-    """Tag sets from the hand-kept lists in config.toml. These override the automatic tags."""
-    for set_type in ("powered_down", "side_project"):
-        for entry in cfg.get(set_type, []):
-            parts = entry.split()
-            day, label = parts[0], (parts[1] if len(parts) > 1 else None)
-            show_ids = [r[0] for r in conn.execute("SELECT id FROM shows WHERE date = ?", (day,))]
-            if not show_ids:
-                problems.append(f"config {set_type} '{entry}': no show on that date")
-                continue
-            if len(show_ids) > 1:
-                problems.append(f"config {set_type} '{entry}': {len(show_ids)} shows that day, tagged all of them")
-            for sid in show_ids:
-                sql = "UPDATE sets SET set_type = ? WHERE show_id = ?" + (" AND label = ?" if label else "")
-                n = conn.execute(sql, [set_type, sid] + ([label] if label else [])).rowcount
-                if n == 0:
-                    problems.append(f"config {set_type} '{entry}': no set {label} in that show")
 
 
 def resolve_completions(conn):
@@ -440,11 +425,14 @@ def main():
         loaded.append((d, slug, setlist, details))
         progress[slug] = ("done", None)
         stats["shows"] += 1
-    apply_hand_tags(conn, cfg, problems)
     unresolved = resolve_completions(conn)
     for slug, (status, detail) in progress.items():
         conn.execute("INSERT OR REPLACE INTO backfill_progress VALUES (?, ?, ?, ?)", (slug, status, detail, now()))
     conn.commit()
+
+    log("Parsing notes (set types, teases)")
+    _, parse_problems = parse_notes.run(conn, cfg, verbose=False)
+    problems += parse_problems
 
     log("Step 4/4: scanning for Powered Down candidates")
     lines, n_candidates = scan_powered_down(sorted(loaded))
@@ -469,6 +457,8 @@ def main():
         "completions": q("SELECT COUNT(*) FROM completions"),
         "completions_unresolved": unresolved,
         "sit_ins": q("SELECT COUNT(*) FROM sit_ins"),
+        "whole_show_guests": q("SELECT COUNT(*) FROM sit_ins WHERE perf_id IS NULL"),
+        "teases": q("SELECT COUNT(*) FROM teases"),
         "absent_markers": stats["absent_markers"],
         "placeholders_skipped": len(placeholders),
         "powered_down_candidates": n_candidates,

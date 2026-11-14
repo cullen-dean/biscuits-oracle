@@ -112,11 +112,12 @@ CREATE TABLE IF NOT EXISTS completions (
     PRIMARY KEY (completing_perf_id, target_show_slug, target_set, target_position)
 );
 
--- Teases, samples and quoted jams parsed from annotations.
+-- Teases, samples, quoted jams, fakeouts, intros and lyric quotes parsed from annotations
+-- by parse_notes.py (rebuilt from scratch on every run).
 CREATE TABLE IF NOT EXISTS teases (
     id      INTEGER PRIMARY KEY,
     perf_id INTEGER NOT NULL REFERENCES performances(id) ON DELETE CASCADE,
-    kind    TEXT NOT NULL CHECK (kind IN ('tease', 'sample', 'jam')),
+    kind    TEXT NOT NULL CHECK (kind IN ('tease', 'sample', 'jam', 'fakeout', 'intro', 'lyrics')),
     title   TEXT NOT NULL,
     artist  TEXT,
     song_id INTEGER REFERENCES songs(id)      -- set when it's a Biscuits song we know

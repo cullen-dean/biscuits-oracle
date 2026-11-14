@@ -1,0 +1,31 @@
+Tractorbeam: shows to check (made by scripts/parse_notes.py)
+Rule: a set named in the notes -> only that set; no set named -> whole show.
+Each entry says what was tagged and why it looked unclear.
+
+2009-07-18 | 2009-07-18-indian-lookout-country-club-mariaville-ny
+    - tagged S1 as Tractorbeam, but it was 'Tractorbeam vs. The Perfume': "Set I was ‘Tractorbeam Vs. The Perfume’"
+    notes: Camp Bisco 8 / Acts included: STS9, Nas & Damian, Asher Roth, Lotus, Pretty Lights, Shpongle (DJ set), The New Deal, EOTO, Brothers Past, Younger Brother, Ott, The Egg, & others / Set I was ‘Tractorbeam Vs. The Perfume’
+2014-01-26 | 2014-01-26-fox-theatre-boulder-co
+    - tagged the whole show (3 sets) from "Performed as Tractorbeam"
+    notes: Performed as Tractorbeam
+2018-07-14 | 2018-07-14-the-pavilion-at-montage-mountain-scranton-pa
+    - tagged S1 as Tractorbeam, but it was 'Tractorbeam vs. The Perfume': "Set I was the 2nd ‘Tractorbeam Vs. The Perfume’ competition with fans spinning the wheel to determin"
+    notes: Camp Bisco 16 / Excision, Tipper, Bonobo (Live Band), Illenium, Lotus, STS9, Lettuce, The Floozies (feat. The Terminus Horns), Ghostface Killah, DJ Jazzy Jeff & many others / Set I was the 2nd ‘Tractorbeam Vs. The Perfume’ competition with fans spinning the wheel to determine the songs the band play
+2019-10-03 | 2019-10-03-10-mile-music-hall-frisco-co
+    - no setlist in the API, so nothing to tag
+    notes: Show billed as Tractorbeam / New Tractorbeam format debuted. This iteration focuses on playing live versions of house and disco songs like Delorean Dynamite/Strandbar (Todd Terje), White Rabbit (Solomun), Fly Away (Crackazat). All four band members use laptops and are synced up through Ableton Live.
+2019-10-04 | 2019-10-04-10-mile-music-hall-frisco-co
+    - no setlist in the API, so nothing to tag
+    notes: Show billed as Tractorbeam (Same as 10/3 playing live versions of DJ mixes synced up through Ableton Live) / (Set 1): Carl Cox 5 > Carl Cox 1 > Carl Cox 2 > Carl Cox 3 > Carl Cox 4 / (Set 2): Solomun 1 > Solomun 2 > Breakbot > Terje > Magic Tape > Reconnect
+2024-03-14 | 2024-03-14-college-street-music-hall-new-haven-ct
+    - mentions Tractorbeam but not as a performance, so NOT tagged: "Soundcheck: Tractorbeam Jam, Jam"
+    notes: Soundcheck: Tractorbeam Jam, Jam / Karina Rykman opened
+2025-06-18 | 2025-06-18-bearsville-theatre-woodstock-ny
+    - mentions Tractorbeam but not as a performance, so NOT tagged: "Featuring Tractorbeam Workshop"
+    notes: Camp Home Again / Featuring Tractorbeam Workshop / Super Jam (with Karina Rykman, Mike Greenfield, Tom McKee, Tom Hamilton & tDB members) + 2 tDB Sets
+2026-05-07 | 2026-05-07-viva-el-gonzo-san-jose-del-cabo-baja-california-sur
+    - split show: tagged only 'Quad D' (S1 #6) through 'I Saw Ya Dancing' (S1 #11) as Tractorbeam (from a track annotation); the rest stays a normal set
+    notes: Viva El Gonzo Music & Arts Festival / Acts Include: Goose, My Morning Jacket, Eggy, Lespecial / Soundcheck: I Saw Ya Dancing, I-Man (partial) / Originally scheduled to play 2 sets, the band performed the 2nd half as Tractorbeam starting with ‘Quad D’ on
+2026-09-25 | 2026-09-25-nocturnal-valley-music-arts-festival-french-village-mo
+    - split show: tagged only 'Orch Theme' (S1 #5) through 'Hymn' (S1 #11) as Tractorbeam (from a track annotation); the rest stays a normal set
+    notes: tDB on the Astral Stage (730-830p) / Tractorbeam on the Astral Stage (845-945p)
