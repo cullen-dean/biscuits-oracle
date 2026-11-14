@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS sets (
     label     TEXT NOT NULL,                  -- S1, S2, S3, E1, E2 ...
     set_order INTEGER NOT NULL,
     set_type  TEXT NOT NULL DEFAULT 'electric'
-              CHECK (set_type IN ('electric', 'tractorbeam', 'powered_down')),
+              CHECK (set_type IN ('electric', 'tractorbeam', 'powered_down', 'side_project')),
     UNIQUE (show_id, label)
 );
 

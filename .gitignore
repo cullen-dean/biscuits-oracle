@@ -14,3 +14,6 @@ __pycache__/
 # Editor / OS clutter
 .vscode/
 Thumbs.db
+
+# Raw API download cache (re-creatable; the database holds the data)
+data/cache/

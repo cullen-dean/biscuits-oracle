@@ -1,0 +1,207 @@
+Powered Down candidates (made by scripts/backfill.py on 2026-11-14)
+Nothing here is used until you confirm it. Confirmed ones go in config.toml as
+  powered_down = ["YYYY-MM-DD S1", "YYYY-MM-DD"]   (a date alone = whole show)
+
+Format: date | set | slug | reason(s)
+
+1997-06-28 | whole show | 1997-06-28-e-stage-further-festival-sony-entertainment-center-camden-nj
+    - extra non-guest musician: Johnny Zula (percussion)
+1999-01-24 | whole show | 1999-01-24-center-for-the-arts-natick-ma
+    - show notes mention 'acoustic': Barber opened the show with a solo acoustic set. <br> Uncle Sammy performed after Barber <br> 
+1999-02-16 | S1 | 1999-02-16-cajun-house-scottsdale-az
+    - track note on 'Run Like Hell' mentions 'unplugged': After a few minutes of treading water, Barber decisively takes the lead on this glorious Run Like Hell jam. Some of Barb
+1999-12-07 | whole show | 1999-12-07-chris-jazz-cafe-philadelphia-pa
+    - usual member marc-brownstein is absent and nobody else plays bass
+    - usual member sam-altman is absent and nobody else plays drums
+2000-03-11 | E1 | 2000-03-11-wetlands-preserve-new-york-ny
+    - annotation on 'I-Man' mentions 'acoustic': Barber on acoustic guitar. Sammy on djembe. Stopped before end of song because police broke up the show.
+2000-03-11 | whole show | 2000-03-11-wetlands-preserve-new-york-ny
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-04-15 | whole show | 2000-04-15-recher-theatre-towson-md
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-04-21 | whole show | 2000-04-21-middle-east-cambridge-ma
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-04-22 | whole show | 2000-04-22-keene-state-college-keene-nh
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-04-29 | whole show | 2000-04-29-trocadero-philadelphia-pa
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-05-13 | whole show | 2000-05-13-sandwich-high-school-auditorium-east-sandwich-ma
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-05-19 | whole show | 2000-05-19-zollman-s-pavilion-buffalo-creek-music-festival-lexington-va
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-05-20 | whole show | 2000-05-20-all-good-festival-buffalo-gap-camping-ground-capon-bridge-wv
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-06-22 | whole show | 2000-06-22-irving-plaza-new-york-ny
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-06-27 | whole show | 2000-06-27-the-roxy-new-york-ny
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-07-12 | whole show | 2000-07-12-crowbar-state-college-pa
+    - usual member marc-brownstein is absent and nobody else plays bass
+2000-08-18 | whole show | 2000-08-18-trocadero-philadelphia-pa
+    - show notes suggest a different billing: Show Billed as Electron<br>
+
+Set 1 is the first complete performance of "The Chemical Warfare Brigade"<br>
+
+Set 1: Plan B, Floodlights1, And
+2001-04-16 | whole show | 2001-04-16-wetlands-preserve-new-york-ny
+    - show notes suggest a different billing: Surprise gig under the name 'the Perfume'. tDB's set was sandwiched with sets by Electron.
+2003-05-28 | whole show | 2003-05-28-the-conduit-trenton-nj
+    - show notes suggest a different billing: Billed as 'The Perfume.'
+2003-10-23 | whole show | 2003-10-23-stella-blue-asheville-nc
+    - show notes suggest a different billing: Billed as 'The Perfume.'
+2004-05-28 | whole show | 2004-05-28-the-conduit-trenton-nj
+    - show notes suggest a different billing: Billed as 'The Perfume.'
+2005-04-26 | whole show | 2005-04-26-the-theater-at-msg-new-york-ny
+    - usual member sam-altman is absent and nobody else plays drums
+2005-09-13 | whole show | 2005-09-13-spirit-new-york-ny
+    - usual member sam-altman is absent and nobody else plays drums
+2005-11-18 | whole show | 2005-11-18-the-music-box-at-the-borgata-hotel-and-casino-atlantic-city-nj
+    - usual member sam-altman is absent and nobody else plays drums
+2005-11-19 | whole show | 2005-11-19-the-music-box-at-the-borgata-hotel-and-casino-atlantic-city-nj
+    - usual member sam-altman is absent and nobody else plays drums
+2005-12-28 | whole show | 2005-12-28-tower-theater-upper-darby-pa
+    - extra non-guest musician: Allen Aucoin (drums)
+2005-12-29 | whole show | 2005-12-29-tower-theater-upper-darby-pa
+    - extra non-guest musician: Allen Aucoin (drums)
+2005-12-30 | whole show | 2005-12-30-hammerstein-ballroom-new-york-ny
+    - extra non-guest musician: Allen Aucoin (drums)
+2005-12-31 | whole show | 2005-12-31-hammerstein-ballroom-new-york-ny
+    - extra non-guest musician: Allen Aucoin (drums)
+2006-04-14 | whole show | 2006-04-14-higher-ground-south-burlington-vt
+    - no lineup listed at all (can't check it)
+2006-04-15 | whole show | 2006-04-15-higher-ground-south-burlington-vt
+    - no lineup listed at all (can't check it)
+2006-09-23 | whole show | 2006-09-23-patrick-gymnasium-university-of-vermont-burlington-vt
+    - extra non-guest musician: Shawn Hennessey (percussion)
+2006-10-31 | whole show | 2006-10-31-orpheum-theater-boston-ma
+    - extra non-guest musician: Shawn Hennessey (guitar, percussion)
+2006-11-01 | whole show | 2006-11-01-state-theater-ithaca-ny
+    - extra non-guest musician: Shawn Hennessey (percussion)
+2006-11-02 | whole show | 2006-11-02-water-street-music-hall-rochester-ny
+    - extra non-guest musician: Shawn Hennessey (percussion)
+2006-11-03 | whole show | 2006-11-03-the-calvin-northampton-ma
+    - extra non-guest musician: Shawn Hennessey (guitar, percussion)
+2006-11-04 | whole show | 2006-11-04-sonar-lounge-baltimore-md
+    - extra non-guest musician: Shawn Hennessey (percussion)
+2007-04-20 | whole show | 2007-04-20-ontourage-chicago-il
+    - show notes suggest a different billing: Billed as TractorBeam
+2007-04-27 | whole show | 2007-04-27-gramercy-theatre-new-york-ny
+    - show notes suggest a different billing: Billed as 'TractorBeam'
+2007-06-26 | whole show | 2007-06-26-chameleon-club-lancaster-pa
+    - show notes suggest a different billing: Billed as TractorBeam
+2007-08-30 | whole show | 2007-08-30-chameleon-club-lancaster-pa
+    - show notes suggest a different billing: Billed as 'TractorBeam'
+2008-10-25 | whole show | 2008-10-25-state-theater-falls-church-va
+    - show notes suggest a different billing: Billed as TractorBeam
+2010-03-19 | whole show | 2010-03-19-house-of-blues-boston-ma
+    - usual member jon-gutwillig is absent and nobody else plays guitar
+2010-03-21 | whole show | 2010-03-21-brooklyn-bowl-brooklyn-ny
+    - usual member jon-gutwillig is absent and nobody else plays guitar
+2010-03-26 | whole show | 2010-03-26-bicentennial-park-miami-fl
+    - usual member jon-gutwillig is absent and nobody else plays guitar
+2010-03-26 | whole show | 2010-03-26-grand-central-miami-fl
+    - show notes suggest a different billing: Performed as Tractorbeam <br>
+
+Post-Ultra Music Festival Afterparty <br>
+
+Acts included: Eclectic Method, DJs Terence Tabeau, Edwin Adam
+    - usual member jon-gutwillig is absent and nobody else plays guitar
+2010-05-27 | whole show | 2010-05-27-pearl-street-mall-boulder-co
+    - show notes mention 'acoustic': Free impromptu acoustic performance outside of the Pearl Street Mall
+2010-09-18 | whole show | 2010-09-18-mishawaka-amphitheater-bellvue-co
+    - show notes suggest a different billing: Re:Creation - Billed as Tractorbeam, other acts include Conspirator, M80 Dubstation, Ginger Kids (Lane + Ben of Pnuma Trio) and Raw Russ
+2010-10-31 | whole show | 2010-10-31-jefferson-theater-charlottesville-va
+    - show notes suggest a different billing: Billed as Tractorbeam
+2010-12-27 | whole show | 2010-12-27-terminal-5-new-york-ny
+    - usual member allen-aucoin is absent and nobody else plays drums
+2010-12-28 | whole show | 2010-12-28-terminal-5-new-york-ny
+    - usual member allen-aucoin is absent and nobody else plays drums
+2010-12-29 | whole show | 2010-12-29-terminal-5-new-york-ny
+    - extra non-guest musician: Sam Altman (drums)
+2010-12-30 | whole show | 2010-12-30-tower-theater-upper-darby-pa
+    - extra non-guest musician: Sam Altman (drums)
+2010-12-31 | whole show | 2010-12-31-tower-theater-upper-darby-pa
+    - usual member allen-aucoin is absent and nobody else plays drums
+2011-01-21 | whole show | 2011-01-21-mayan-holidaze-now-sapphire-resort-puerto-morelos-mexico
+    - usual member marc-brownstein is absent and nobody else plays bass
+2011-01-23 | whole show | 2011-01-23-mayan-holidaze-now-sapphire-resort-puerto-morelos-mexico
+    - show notes suggest a different billing: Mayan Holidaze.    Billed as Tractorbeam
+2014-01-26 | whole show | 2014-01-26-fox-theatre-boulder-co
+    - show notes suggest a different billing: Performed as Tractorbeam
+2014-09-27 | whole show | 2014-09-27-mann-center-for-the-performing-arts-philadelphia-pa
+    - show notes suggest a different billing: City Bisco - Other acts included Giorgio Moroder, Orchard Lounge and Risky Disko<br>
+
+First set was performed as The Perfume 
+2014-12-29 | whole show | 2014-12-29-b-b-king-s-blues-club-new-york-ny
+    - show notes suggest a different billing: Billed as Tractorbeam 
+2019-10-03 | whole show | 2019-10-03-10-mile-music-hall-frisco-co
+    - show notes suggest a different billing: Show billed as Tractorbeam<br>
+
+New Tractorbeam format debuted. This iteration focuses on playing live versions of house and disco songs l
+2019-10-04 | whole show | 2019-10-04-10-mile-music-hall-frisco-co
+    - show notes suggest a different billing: Show billed as Tractorbeam (Same as 10/3 playing live versions of DJ mixes synced up through Ableton Live)
+
+(Set 1): Carl Cox 5 > Carl Cox
+2019-12-28 | whole show | 2019-12-28-sony-hall-new-york-ny
+    - show notes suggest a different billing: Performed as Tractorbeam (2am Set)
+
+
+2023-10-13 | whole show | 2023-10-13-harpa-concert-hall-reykjavik
+    - extra non-guest musician: Marlon Lewis (drums)
+2024-07-04 | whole show | 2024-07-04-wonderland-forest-lafayette-ny
+    - show notes suggest a different billing: BISCOLAND II <br>
+Acts include: Kitchen Dwellers, Lettuce, Raq, Lespecial, Space Bacon, Dizgo, Cofresi, Cloudchord, Squeaky Feet <br>
+Perf
+2024-09-13 | whole show | 2024-09-13-pine-creek-lodge-livingston-mt
+    - show notes suggest a different billing: Performed As Tractorbeam
+2025-02-07 | whole show | 2025-02-07-boulder-theater-boulder-co
+    - show notes suggest a different billing: Soundcheck: Orch -> Losing It -> Air -> Orch Theme
+
+
+Performed As Tractorbeam
+2025-03-14 | S1 | 2025-03-14-starland-ballroom-sayreville-nj
+    - annotation on 'Scars of the Brave' mentions 'Acoustic': played by Barber/Magner ‘Mostly Acoustic’ 3/7/25
+2025-06-12 | whole show | 2025-06-12-bonnaroo-music-festival-manchester-tn
+    - show notes suggest a different billing: Bonnaroo Festival. Other acts include Olivia Rodrigo, Dom Dolla, Justice, Vampire Weekend & more. <br>
+Performed As Tractorbeam on Infinity
+2025-06-21 | whole show | 2025-06-21-electric-forest-rothbury-mi
+    - show notes suggest a different billing: Electric Forest Festival. Acts include Tiësto, Fisher, Justice, String Cheese Incident, DJ Brownie & more <br>
+Performed As Tractorbeam <br
+2025-07-03 | whole show | 2025-07-03-the-ave-live-philadelphia-pa
+    - show notes suggest a different billing: Performed As Tractorbeam
+2025-07-13 | whole show | 2025-07-13-portland-house-of-music-portland-me
+    - show notes suggest a different billing: Performed As Tractorbeam
+2025-11-01 | whole show | 2025-11-01-suwannee-music-park-live-oak-fl
+    - show notes suggest a different billing: Hulaween Festival <br>
+Spirit Lake Stage (215a-345a) <br>
+Performed as Tractorbeam <br>
+
+2025-11-13 | whole show | 2025-11-13-elsewhere-brooklyn-ny
+    - show notes suggest a different billing: Performed as Tractorbeam
+2025-12-19 | whole show | 2025-12-19-garcias-chicago-il
+    - show notes mention 'Powered Down': Powered Down Acoustic Show
+2025-12-29 | whole show | 2025-12-29-the-sinclair-cambridge-ma
+    - show notes suggest a different billing: Performed as Tractorbeam
+2025-12-31 | whole show | 2025-12-31-roadrunner-boston-ma
+    - show notes suggest a different billing: The Disco Biscuits 1st Ever Boston NYE Show <br>
+Billed as the “Boston Techno Party” 
+2026-03-20 | whole show | 2026-03-20-okeechobee-music-arts-festival-okeechobee-fl
+    - show notes suggest a different billing: Other acts include: LCD Soundsystem, The Lumineers, Fisher, Cage the Elephant, Alison Wonderland & T-Pain
+Performed as Tractorbeam (1a-2a)
+2026-04-12 | whole show | 2026-04-12-gather-outdoors-stratton-vt
+    - show notes mention 'Powered Down': Gather Outdoors <br>
+Acts Include: Karina Rykman, Daily Bread, Of The Trees <br>
+Set I: Performed Powered Down (Acoustic) (5:15-6:30p) <br
+    - show notes suggest a different billing: Gather Outdoors <br>
+Acts Include: Karina Rykman, Daily Bread, Of The Trees <br>
+Set I: Performed Powered Down (Acoustic) (5:15-6:30p) <br
+2026-04-17 | whole show | 2026-04-17-1015-folsom-san-francisco-ca
+    - show notes suggest a different billing: Performed As Tractorbeam
+2026-07-09 | whole show | 2026-07-09-live-at-madrids-portland-me
+    - show notes suggest a different billing: Performed As Tractorbeam
+2026-08-07 | whole show | 2026-08-07-telluride-jazz-festival-telluride-co
+    - show notes mention 'Powered Down': Performed ‘Powered Down’ (8:00-9:40p)
+2026-08-09 | whole show | 2026-08-09-elements-music-arts-festival-long-pond-pa
+    - show notes suggest a different billing: Acts include: Above & Beyond, Sub Focus, Excision, <br> Of The Trees, Cloonee, Kettama & more <br> Performed as Tractorbeam (6:40-7:55p) <br
+
+82 candidate(s).

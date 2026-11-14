@@ -147,7 +147,7 @@ biscuits-oracle/
 | `runs` | Back-to-back shows at the same venue or festival (for example, 3 nights at the Capitol Theatre) |
 | `tours` | Groups of shows by tour (from the site if it provides tours, otherwise worked out from date gaps) |
 | `songs` | id, name, original artist, is_cover |
-| `sets` | show_id, set name (S1/S2/E1…), `set_type`: `electric` (normal), `tractorbeam`, or `powered_down` (acoustic) |
+| `sets` | show_id, set name (S1/S2/E1…), `set_type`: `electric` (normal), `tractorbeam`, `powered_down` (acoustic), or `side_project` (billed as The Perfume or Electron) |
 | `performances` | One row per song played: show_id, set_id, position, song_id, raw notes text |
 | `segues` | from_performance → to_performance, type (`>` segue or `->` jam) |
 | `performance_flags` | performance_id, flag: `inverted`, `dyslexic`, `unfinished`, `beginning_only`, `middle_only`, `ending_only` |
@@ -168,6 +168,7 @@ A **"show gap"** counts shows, not days. Every stat below runs on the show numbe
 tour_gap_days = 21            # new tour after this many days with no show
 include_tractorbeam = false   # count Tractorbeam sets in gap/rotation math?
 include_powered_down = false  # count Powered Down acoustic sets in gap/rotation math?
+include_side_project = false  # count shows billed as The Perfume / Electron?
 bustout_min_gap = 100         # shows
 recency_half_life_days = 365  # a show this many days old counts half as much as last night's
 
@@ -292,7 +293,11 @@ Each step ends with something the user can see working.
 - [x] Step 2: `.venv` set up, repo at https://github.com/cullen-dean/biscuits-oracle (public)
 - [x] Step 3: data explored (findings in section 1). `next_show.py` works.
 - [x] Step 4: `scripts/schema.sql` (17 tables), `scripts/db.py`, `config.toml`. Run `python scripts/db.py` to create or check the DB. It's safe to re-run.
-- [ ] Step 5: backfill
+- [x] Step 5: backfill (2026-11-14). `python scripts/backfill.py` fetches whatever is missing; add `--load` to rebuild the DB from `data/cache/` with no API calls. Result: 1,966 shows (1995-02-11 to 2026-10-31), 554 songs, 23,327 performances, 0 errors. Powered Down candidates are in `data/powered_down_candidates.txt` (82 entries).
+  - **User decisions (2026-11-14):** The confirmed Powered Down entries are 2000-03-11 E1, 2025-12-19, 2026-04-12 S1, and 2026-08-07. The 5 shows billed as The Perfume or Electron are tagged `side_project` and excluded by default (`include_side_project`). Both lists live in `config.toml` and are applied by `backfill.py` (`apply_hand_tags`). The no-bass 2000 shows and the drummer changeover shows stay normal Biscuits shows.
+  - Changing a `CHECK` list in `schema.sql` needs a fresh DB. Delete `data/biscuits.db`, then run `backfill.py --load`.
+  - **Correction to the Step 3 finding:** Tractorbeam is mostly marked in the **show notes** ("Billed as Tractorbeam", "Performed as Tractorbeam", about 20 shows). Only 61 tracks carry a track annotation, so 0 sets were tagged. Decide how to handle this before Step 7.
+  - Powered Down also appears in show notes: "Powered Down Acoustic Show" (2025-12-19), and Set I at Gather Outdoors (2026-04-12) and Telluride (2026-08-07).
 
 ## 10. Safety rules
 

@@ -8,9 +8,23 @@ tour_gap_days = 21            # a new tour starts after more than this many days
 # ---- Special sets (include them in gap / rotation math?) ----
 include_tractorbeam = false
 include_powered_down = false
-# Confirmed Powered Down sets. "YYYY-MM-DD S1" = one set, "YYYY-MM-DD" = whole show.
-# Filled in from data/powered_down_candidates.txt after you confirm each one.
-powered_down = []
+include_side_project = false  # shows billed as The Perfume or Electron
+# Hand-kept lists. "YYYY-MM-DD S1" = one set, "YYYY-MM-DD" = whole show.
+# Confirmed Powered Down sets (from data/powered_down_candidates.txt, confirmed 2026-11-14).
+powered_down = [
+  "2000-03-11 E1",   # Wetlands: I-Man encore, Barber on acoustic guitar, Sammy on djembe
+  "2025-12-19",      # Garcia's, Chicago: "Powered Down Acoustic Show"
+  "2026-04-12 S1",   # Gather Outdoors: "Set I: Performed Powered Down (Acoustic)"
+  "2026-08-07",      # Telluride Jazz Festival: "Performed 'Powered Down'"
+]
+# Shows billed under another name (side projects).
+side_project = [
+  "2000-08-18",      # billed as Electron
+  "2001-04-16",      # surprise gig as The Perfume
+  "2003-05-28",      # billed as The Perfume
+  "2003-10-23",      # billed as The Perfume
+  "2004-05-28",      # billed as The Perfume
+]
 
 # ---- Prediction math ----
 recency_half_life_days = 365  # a show this many days old counts half as much as last night's
