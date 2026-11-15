@@ -10,9 +10,11 @@ include_tractorbeam = false
 include_powered_down = false
 include_side_project = false  # shows billed as The Perfume or Electron
 # Hand-kept lists. "YYYY-MM-DD S1" = one set, "YYYY-MM-DD" = whole show.
+# If two shows share a date, use the show's slug instead of the date (optionally followed by a set).
 # Confirmed Powered Down sets (from data/powered_down_candidates.txt, confirmed 2026-11-14).
 powered_down = [
   "2000-03-11 E1",   # Wetlands: I-Man encore, Barber on acoustic guitar, Sammy on djembe
+  "2010-05-27-pearl-street-mall-boulder-co",  # free impromptu acoustic set (added 2026-11-14); slug used because the Boulder Theater show was the same day
   "2025-12-19",      # Garcia's, Chicago: "Powered Down Acoustic Show"
   "2026-04-12 S1",   # Gather Outdoors: "Set I: Performed Powered Down (Acoustic)"
   "2026-08-07",      # Telluride Jazz Festival: "Performed 'Powered Down'"
@@ -30,6 +32,24 @@ side_project = [
 recency_half_life_days = 365  # a show this many days old counts half as much as last night's
 bustout_min_gap = 100         # shows; minimum gap for the Bustout Candidates list
 run_repeat_penalty = 0.05     # multiplier for a song already played earlier in the run
+run_max_days_between = 2      # shows at the same venue this many days apart (or fewer) are one run
+
+# Open threads: a song left unfinished that may get completed soon.
+# (Inverted isn't included: only 1 of 1,188 inverted versions was ever "completed".)
+open_thread_flags = ["UNFINISHED", "BEGINNING_ONLY"]
+open_thread_window = 5        # shows; 95% of completions came within 5 shows
+
+# ---- Prediction score weights ----
+# score = base_rate x due x rotation x venue x night x run_penalty + open_thread_bonus
+# Each factor is kept between factor_min and factor_max, then raised to its weight
+# (weight 0 = ignore that factor, 1 = normal, 2 = twice as strong).
+w_due = 1.0
+w_rotation = 1.0
+w_venue = 0.5
+w_night = 0.5
+w_open_thread = 1.0           # multiplies the historical chance that a thread this old gets completed
+factor_min = 0.25
+factor_max = 4.0
 
 # ---- Prediction scoring ----
 max_counted_songs = 15        # only the first N songs in a prediction file are scored

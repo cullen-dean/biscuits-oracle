@@ -425,6 +425,13 @@ def main():
         loaded.append((d, slug, setlist, details))
         progress[slug] = ("done", None)
         stats["shows"] += 1
+    # Placeholder shows (no venue, no setlist in the API) still happened, and discobiscuits.net
+    # counts them in gaps, so keep them as shows with no sets.
+    for slug in placeholders:
+        if not conn.execute("SELECT 1 FROM shows WHERE slug = ?", (slug,)).fetchone():
+            conn.execute("""INSERT INTO shows (slug, date, notes, first_seen_at, last_changed_at)
+                            VALUES (?, ?, 'Placeholder: no venue or setlist in the API', ?, ?)""",
+                         (slug, slug[:10], now(), now()))
     unresolved = resolve_completions(conn)
     for slug, (status, detail) in progress.items():
         conn.execute("INSERT OR REPLACE INTO backfill_progress VALUES (?, ?, ?, ?)", (slug, status, detail, now()))

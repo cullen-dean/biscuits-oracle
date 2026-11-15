@@ -242,11 +242,14 @@ def run(conn, cfg, verbose=True):
         for entry in cfg.get(set_type, []):
             parts = entry.split()
             day, label = parts[0], (parts[1] if len(parts) > 1 else None)
-            show_ids = [r[0] for r in conn.execute("SELECT id FROM shows WHERE date = ?", (day,))]
+            # A date, or a full show slug when two shows share a date.
+            show_ids = [r[0] for r in conn.execute("SELECT id FROM shows WHERE slug = ?", (day,))] or \
+                       [r[0] for r in conn.execute("SELECT id FROM shows WHERE date = ?", (day,))]
             if not show_ids:
-                problems.append(f"config {set_type} '{entry}': no show on that date")
+                problems.append(f"config {set_type} '{entry}': no show with that date or slug")
             if len(show_ids) > 1:
-                problems.append(f"config {set_type} '{entry}': {len(show_ids)} shows that day, tagged all")
+                problems.append(f"config {set_type} '{entry}': {len(show_ids)} shows that day, tagged all "
+                                f"(use the show slug to pick one)")
             for sid in show_ids:
                 sql = "UPDATE sets SET set_type = ? WHERE show_id = ?" + (" AND label = ?" if label else "")
                 if conn.execute(sql, [set_type, sid] + ([label] if label else [])).rowcount == 0:
